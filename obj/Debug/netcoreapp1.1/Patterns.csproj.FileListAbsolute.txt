@@ -1,0 +1,8 @@
+c:\PROJECTS\My\Patterns\bin\Debug\netcoreapp1.1\Patterns.deps.json
+c:\PROJECTS\My\Patterns\bin\Debug\netcoreapp1.1\Patterns.runtimeconfig.json
+c:\PROJECTS\My\Patterns\bin\Debug\netcoreapp1.1\Patterns.runtimeconfig.dev.json
+c:\PROJECTS\My\Patterns\bin\Debug\netcoreapp1.1\Patterns.dll
+c:\PROJECTS\My\Patterns\bin\Debug\netcoreapp1.1\Patterns.pdb
+c:\PROJECTS\My\Patterns\obj\Debug\netcoreapp1.1\Patterns.AssemblyInfo.cs
+c:\PROJECTS\My\Patterns\obj\Debug\netcoreapp1.1\Patterns.dll
+c:\PROJECTS\My\Patterns\obj\Debug\netcoreapp1.1\Patterns.pdb
