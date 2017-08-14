@@ -2,7 +2,7 @@ using System;
 
 namespace Patterns
 {
-    public interface IVisitor {
+    public interface IShapeVisitor {
         void Visit(Triangle visitable);
         void Visit(Circle visitable);
         void Visit(Rectangle visitable);
@@ -13,7 +13,7 @@ namespace Patterns
         public double Width { get; set; }
         public double Height { get; set; }
 
-        public void Accept(IVisitor visitor)
+        public void Accept(IShapeVisitor visitor)
         {
             visitor.Visit(this);
         }
@@ -23,7 +23,7 @@ namespace Patterns
     {
         public double Radius { get; set; }
 
-        public void Accept(IVisitor visitor)
+        public void Accept(IShapeVisitor visitor)
         {
             visitor.Visit(this);
         }
@@ -36,13 +36,13 @@ namespace Patterns
         public double C { get; set; }
         public double Height { get; set; }
 
-        public void Accept(IVisitor visitor)
+        public void Accept(IShapeVisitor visitor)
         {
             visitor.Visit(this);
         }
     }
 
-    public class ShapeAreaVisitor : IVisitor
+    public class ShapeAreaVisitor : IShapeVisitor
     {
         public double Area { get; set; }
         public void Visit(Triangle visitable)
@@ -61,9 +61,28 @@ namespace Patterns
         }
     }
 
+    public class ShapeLengthVisitor : IShapeVisitor
+    {
+        public double Length { get; set; }
+        public void Visit(Triangle visitable)
+        {
+            Length += visitable.A * + visitable.B + visitable.C;
+        }
+
+        public void Visit(Circle visitable)
+        {
+            Length += 2 * Math.PI * visitable.Radius;
+        }
+
+        public void Visit(Rectangle visitable)
+        {
+            Length += 2 * visitable.Height + 2 * visitable.Width;
+        }
+    }
+
     public interface IVisitable
     {
-        void Accept(IVisitor visitor);
+        void Accept(IShapeVisitor visitor);
     }
 
     public class VisitorTest {
@@ -76,13 +95,16 @@ namespace Patterns
                 new Triangle { B = 5.6, Height = 4 }
             };
 
-            ShapeAreaVisitor visitor = new ShapeAreaVisitor();
+            ShapeAreaVisitor areaVisitor = new ShapeAreaVisitor();
+            ShapeLengthVisitor lengthVisitor = new ShapeLengthVisitor();
             foreach (var item in shapes)
             {
-                item.Accept(visitor);
+                item.Accept(areaVisitor);
+                item.Accept(lengthVisitor);
             }
 
-            Console.WriteLine("Total Area: " + visitor.Area);
+            Console.WriteLine("Total Area: " + areaVisitor.Area);
+            Console.WriteLine("Total Length: " + lengthVisitor.Length);
         }
     }
 }
